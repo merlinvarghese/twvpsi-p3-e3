@@ -105,4 +105,34 @@ class MeasurementTest {
 
         assertFalse(compareResult);
     }
+
+    @Test
+    void expect3MeterIsNotEquals7Meters() {
+        Measurement distanceInMeter = new Measurement(3, "m");
+        Measurement otherDistanceInMeters = new Measurement(7, "m");
+
+        boolean compareResult = distanceInMeter.equals(otherDistanceInMeters);
+
+        assertFalse(compareResult);
+    }
+
+    @Test
+    void expectFalseWhenBothObjectsAreDifferent() {
+        Measurement distanceInMeter = new Measurement(3, "m");
+        String otherStringObject = new String("Test");
+
+        boolean compareResult = distanceInMeter.equals(otherStringObject);
+
+        assertFalse(compareResult);
+    }
+
+    @Test
+    void expectFalseWhenOneObjectIsNull() {
+        Measurement distanceInMeter = new Measurement(3, "m");
+        Measurement otherNullObject = null;
+
+        boolean compareResult = distanceInMeter.equals(otherNullObject);
+
+        assertFalse(compareResult);
+    }
 }
