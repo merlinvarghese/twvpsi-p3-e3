@@ -3,7 +3,6 @@ import java.util.Objects;
 
 //Understands distance in various units
 class Measurement {
-
     private static final double ONE_METER_IN_CENTIMETER = 100;
     private static final double ONE_KILOMETER_IN_CENTIMETER = 100000;
     private double value;
@@ -38,17 +37,15 @@ class Measurement {
         if (this == otherObject) {
             return true;
         }
-        if (otherObject == null || this.getClass() !=  otherObject.getClass()) {
+        if ((otherObject == null) || (this.getClass() != otherObject.getClass())) {
             return false;
         }
 
-        Measurement otherMeasurement = (Measurement) otherObject;
         Measurement convertedInCentimeterObject = convertToCentimeter(this);
-        Measurement convertedInCentimeterOtherObject = convertToCentimeter(otherMeasurement);
+        Measurement convertedInCentimeterOtherObject = convertToCentimeter((Measurement)otherObject);
 
         return (convertedInCentimeterObject.value == convertedInCentimeterOtherObject.value) ;
     }
-
 
     @Override
     public int hashCode() {
