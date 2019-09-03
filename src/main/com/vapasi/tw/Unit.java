@@ -1,20 +1,32 @@
 package com.vapasi.tw;
 
+//understands standard of measurement
 class Unit {
-    private static final double CM_TO_CM = 1;
-    private static final double M_TO_CM = 100;
-    private static final double KM_TO_CM = 100000;
-    private final double conversionFactor;
+    private static final double MULTIPLIER_CM_METER = 100;
+    private static final double MULTIPLIER_CM_KILOMETER = 100000;
+    private static final double MULTIPLIER_GM_KG = 1000;
+    private static final String LENGTH = "length";
+    private static final String WEIGHT = "weight";
 
-    static final Unit CMS = new Unit(CM_TO_CM);
-    static final Unit M = new Unit(M_TO_CM);
-    static final Unit KMS = new Unit(KM_TO_CM);
+    static final Unit CM = new Unit(1, LENGTH);
+    static final Unit M = new Unit(MULTIPLIER_CM_METER, LENGTH);
+    static final Unit KM = new Unit(MULTIPLIER_CM_KILOMETER, LENGTH);
+    static final Unit GM = new Unit(1, WEIGHT);
+    static final Unit KG = new Unit(MULTIPLIER_GM_KG, WEIGHT);
 
-    Unit(double conversionFactor) {
+    private double conversionFactor;
+    private String type;
+
+    private Unit(double conversionFactor, String type) {
         this.conversionFactor = conversionFactor;
+        this.type = type;
     }
 
-     double getConversionFactor(double magnitude) {
+    double convertToBase(double magnitude) {
         return magnitude * this.conversionFactor;
+    }
+
+    boolean isTypeEqualTo(Unit other){
+        return this.type.equals(other.type);
     }
 }
