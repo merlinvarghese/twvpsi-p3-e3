@@ -4,7 +4,10 @@ package com.vapasi.tw;
 class Unit {
     private static final double MULTIPLIER_CM_METER = 100;
     private static final double MULTIPLIER_CM_KILOMETER = 100000;
+    private static final double MULTIPLIER_METER_CM = 0.01;
+    private static final double MULTIPLIER_KM_CM = 0.000001;
     private static final double MULTIPLIER_GM_KG = 1000;
+    private static final double MULTIPLIER_KG_GM = 0.0001;
     private static final String LENGTH = "length";
     private static final String WEIGHT = "weight";
 
@@ -26,7 +29,12 @@ class Unit {
         return magnitude * this.conversionFactor;
     }
 
-    boolean isTypeEqualTo(Unit other){
+    boolean isTypeCompatible(Unit other) {
         return this.type.equals(other.type);
+    }
+
+    double convertTo(double magnitude, Unit unit) {
+        double newConversionFactor = this.conversionFactor/unit.conversionFactor;
+        return magnitude * newConversionFactor;
     }
 }

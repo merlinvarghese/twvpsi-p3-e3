@@ -32,12 +32,22 @@ class Measurement {
         return new Measurement(magnitude, Unit.GM);
     }
 
+    Measurement add(Measurement other) throws CannotAddException {
+        if(!this.unit.isTypeCompatible(other.unit))
+            throw new CannotAddException();
+/*        if(this.unit.isBaseUnit()){
+            return new Measurement(this.magnitude + other.convertToBaseUnit(), this.unit);
+        }*/
+        double magnitudeOther = other.unit.convertTo(other.magnitude, this.unit);
+        return new Measurement(this.magnitude + magnitudeOther, this.unit);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Measurement other = (Measurement) o;
-        if (!this.unit.isTypeEqualTo(other.unit)) {
+        if (!this.unit.isTypeCompatible(other.unit)) {
             return false;
         }
         return convertToBaseUnit() == other.convertToBaseUnit();
@@ -51,5 +61,6 @@ class Measurement {
     private double convertToBaseUnit() {
         return unit.convertToBase(magnitude);
     }
+
 
 }
