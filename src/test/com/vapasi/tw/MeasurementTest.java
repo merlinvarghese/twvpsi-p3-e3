@@ -2,7 +2,6 @@ package com.vapasi.tw;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import static com.vapasi.tw.Measurement.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -103,5 +102,6 @@ class MeasurementTest {
 
         assertEquals(expected, actual);
     }
+
 
 }
