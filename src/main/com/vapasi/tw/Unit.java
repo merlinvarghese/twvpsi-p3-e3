@@ -41,7 +41,7 @@ class Unit {
     }
 
     double convertTo(double magnitude, Unit unit) {
-        double newConversionFactor = this.conversionFactor/unit.conversionFactor;
+        double newConversionFactor = (this.conversionFactor/unit.conversionFactor) - offset;
         return magnitude * newConversionFactor;
     }
 }

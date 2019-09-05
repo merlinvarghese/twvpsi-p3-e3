@@ -3,9 +3,7 @@ package com.vapasi.tw;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UnitTest {
     @Nested
@@ -44,7 +42,7 @@ class UnitTest {
     }
 
     @Nested
-    class TemperatureTest {
+    class MeasurementTest {
 
         @Test
         void expect32FEquals0C() {
@@ -52,6 +50,14 @@ class UnitTest {
             double actual = unit.convertToBase(32.0);
 
             assertEquals(0, actual);
+        }
+
+        @Test
+        void expect37CEquals98_6F() {
+            Unit unit = Unit.C;
+            double actual = unit.convertTo(37.0, Unit.F);
+
+            assertEquals(98.6, actual);
         }
 
         @Test

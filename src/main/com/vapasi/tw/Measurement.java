@@ -2,51 +2,37 @@ package com.vapasi.tw;
 
 import java.util.Objects;
 
-//Understands quantification in various units
-class Measurement {
-    private final double magnitude;
-    private final Unit unit;
+public class Measurement {
 
-    private Measurement(double magnitude, Unit unit) {
+    public double magnitude;
+    public Unit unit;
+
+    public Measurement(double magnitude, Unit unit) {
         this.magnitude = magnitude;
         this.unit = unit;
     }
 
-    static Measurement cm(double magnitude) {
-        return new Measurement(magnitude, Unit.CM);
+    public Measurement() {
+
     }
 
-    static Measurement km(double magnitude) {
-        return new Measurement(magnitude, Unit.KM);
+    static Measurement celcius(double magnitude) {
+        return new Measurement(magnitude, Unit.C);
     }
 
-    static Measurement meter(double magnitude) {
-        return new Measurement(magnitude, Unit.M);
+    static Measurement ferenite(double magnitude) {
+        return new Measurement(magnitude, Unit.F);
     }
 
-    static Measurement kg(double magnitude) {
-        return new Measurement(magnitude, Unit.KG);
-    }
-
-    static Measurement gm(double magnitude) {
-        return new Measurement(magnitude, Unit.GM);
-    }
-
-    Measurement add(Measurement other) throws CannotAddException {
-        if(!this.unit.isTypeCompatible(other.unit))
-            throw new CannotAddException();
-/*        if(this.unit.isBaseUnit()){
-            return new Measurement(this.magnitude + other.convertToBaseUnit(), this.unit);
-        }*/
-        double magnitudeOther = other.unit.convertTo(other.magnitude, this.unit);
-        return new Measurement(this.magnitude + magnitudeOther, this.unit);
+    static Measurement kelvin(double magnitude) {
+        return new Measurement(magnitude, Unit.K);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Measurement other = (Measurement) o;
+        AddableMeasurement other = (AddableMeasurement) o;
         if (!this.unit.isTypeCompatible(other.unit)) {
             return false;
         }
@@ -58,9 +44,7 @@ class Measurement {
         return Objects.hash(magnitude, unit.hashCode());
     }
 
-    private double convertToBaseUnit() {
+    public double convertToBaseUnit() {
         return unit.convertToBase(magnitude);
     }
-
-
 }

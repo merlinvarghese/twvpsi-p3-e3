@@ -2,10 +2,10 @@ package com.vapasi.tw;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static com.vapasi.tw.Measurement.*;
+import static com.vapasi.tw.AddableMeasurement.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MeasurementTest {
+class AddableMeasurementTest {
     @Test
     void expect100CmEquals100cm() {
         assertEquals(true, cm(100).equals(cm(100)));
@@ -78,27 +78,27 @@ class MeasurementTest {
 
     @Test
     void expect300CmEqualsTo100CmAddedTo2M() throws CannotAddException {
-        Measurement expected = cm(300);
+        AddableMeasurement expected = cm(300);
 
-        Measurement actual = cm(100).add(meter(2));
+        AddableMeasurement actual = cm(100).add(meter(2));
 
         assertEquals(expected, actual);
     }
 
     @Test
     void expect2_2KgEqualsTo2KgAddedTo200Gm() throws CannotAddException {
-        Measurement expected = kg(2.2);
+        AddableMeasurement expected = kg(2.2);
 
-        Measurement actual = kg(2).add(gm(200));
+        AddableMeasurement actual = kg(2).add(gm(200));
 
         assertEquals(expected, actual);
     }
 
     @Test
     void expect1002MeterEqualsTo2MeterAddedTo1Km() throws CannotAddException {
-        Measurement expected = meter(1002);
+        AddableMeasurement expected = meter(1002);
 
-        Measurement actual = meter(2).add(km(1));
+        AddableMeasurement actual = meter(2).add(km(1));
 
         assertEquals(expected, actual);
     }
